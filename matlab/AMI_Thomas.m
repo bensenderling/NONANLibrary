@@ -132,13 +132,13 @@ function AMI = average_mutual_information(data)
     hx = std(X)/(n^(1/6)); 
     hy = std(Y)/(n^(1/6)); 
     % Compute univariate marginal density functions. 
-    P_x = univariate_kernel_density(X, hx); 
-    P_y = univariate_kernel_density(Y, hy); 
+    P_x = univariate_kernel_density(X, X, hx); 
+    P_y = univariate_kernel_density(Y, Y, hy); 
     % Compute joint probability density. 
     JointP_xy = bivariate_kernel_density(data, data, hx, hy); 
     AMI = sum(log2(JointP_xy./(P_x.*P_y)))/n; 
 
-function y = univariate_kernel_density(value, window) 
+function y = univariate_kernel_density(value, data, window) 
 % function y = univariate_kernel_density(value, 
 % data, window) 
 % Estimates univariate density using kernel 
