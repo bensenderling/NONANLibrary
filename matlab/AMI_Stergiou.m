@@ -1,14 +1,14 @@
-function varargout=AMI_Stergiou(varargin)
-% [tau,ami]=AMI_Stergiou20210329(data,L)
+function varargout = AMI_Stergiou(varargin)
+% [tau,ami] = AMI_Stergiou(data,L)
 % inputs    - data, single column array
 %           - L, maximal lag to which AMI will be calculated
 %           - bins, number of bins to use in the calculation, if empty an
 %             addaptive formula will be used
 % outputs   - tau, first minimum in the AMI vs lag plot
 %           - v_AMI, vector of AMI values and associated lags
-% [tau,ami]=AMI_Stergiou20210329(data,L,bins)
+% [tau,ami] = AMI_Stergiou(data,L,bins)
 % inputs    - bins, number of bins to use in the calculation
-% [ami]=AMI_Stergiou20210329(x,y)
+% [ami] = AMI_Stergiou(x,y)
 % inputs    - x, single column array with the same length as y
 %           - y, single column array with the same length as x
 % outputs   - ami, the average mutual information between the two arrays

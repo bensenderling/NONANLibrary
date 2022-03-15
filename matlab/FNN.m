@@ -1,5 +1,5 @@
-function [dim, dE] = FNN(data,tau,MaxDim,Rtol,Atol,speed)
-% [FN,dim] = FNN20200714(data,tau,MaxDim,Rtol,Atol)
+function [dim, dE] = FNN(data, tau, MaxDim, Rtol, Atol, speed)
+% [FN, dim] = FNN(data, tau, MaxDim, Rtol, Atol)
 %   data - column oriented time series
 %   tau - time delay
 %   MaxDim - maximum embedding dimension
