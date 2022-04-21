@@ -124,8 +124,8 @@ if (nargin==2 || nargin==3) && numel(varargin{2})==1
         pA2(i,1)=sum(y(1:overlap)==a(i))*increment;
     end
     
-    tau=[];
-    ami=zeros(L+1,2);
+    tau = [NaN, NaN];
+    ami = zeros(L+1,2);
     
     % fprintf('AMI: 00%%')
     
@@ -143,10 +143,11 @@ if (nargin==2 || nargin==3) && numel(varargin{2})==1
         
     end
     
-    tau=[];
-    for i=2:length(ami)-1
-        if (ami(i-1,2)>=ami(i,2))&&(ami(i,2)<=ami(i+1,2))
-            tau(end+1,:)=[ami(i,1) ami(i,2)];
+    ind = 1;
+    for i = 2:length(ami)-1
+        if (ami(i-1,2) >= ami(i,2)) && (ami(i,2) <= ami(i+1,2))
+            tau(ind, 1:2) = [ami(i, 1) ami(i, 2)];
+            ind = ind + 1;
         end
     end
     
