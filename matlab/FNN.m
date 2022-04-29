@@ -82,6 +82,8 @@ function [dim, dE] = FNN(data, tau, MaxDim, Rtol, Atol, speed)
 % SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 %% Begin algorithm
 
+dbstop if error
+
 n=length(data)-tau*MaxDim;  % # of data points to be used
 RA=std(data); % the nominal "radius" of the attractor
 

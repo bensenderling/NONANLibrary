@@ -1,12 +1,12 @@
 function varargout = AMI_Stergiou(varargin)
-% [tau,ami] = AMI_Stergiou(data,L)
+% [tau1st, tau15th, ami] = AMI_Stergiou(data, L)
 % inputs    - data, single column array
 %           - L, maximal lag to which AMI will be calculated
 %           - bins, number of bins to use in the calculation, if empty an
 %             addaptive formula will be used
 % outputs   - tau, first minimum in the AMI vs lag plot
 %           - v_AMI, vector of AMI values and associated lags
-% [tau,ami] = AMI_Stergiou(data,L,bins)
+% [tau1st, tau15th, ami] = AMI_Stergiou(data, L, bins)
 % inputs    - bins, number of bins to use in the calculation
 % [ami] = AMI_Stergiou(x,y)
 % inputs    - x, single column array with the same length as y
@@ -124,7 +124,8 @@ if (nargin==2 || nargin==3) && numel(varargin{2})==1
         pA2(i,1)=sum(y(1:overlap)==a(i))*increment;
     end
     
-    tau = [NaN, NaN];
+    tau1st = [NaN, NaN];
+    tau15th = [NaN, NaN];
     ami = zeros(L+1,2);
     
     % fprintf('AMI: 00%%')
@@ -146,18 +147,19 @@ if (nargin==2 || nargin==3) && numel(varargin{2})==1
     ind = 1;
     for i = 2:length(ami)-1
         if (ami(i-1,2) >= ami(i,2)) && (ami(i,2) <= ami(i+1,2))
-            tau(ind, 1:2) = [ami(i, 1) ami(i, 2)];
+            tau1st(ind, 1:2) = [ami(i, 1) ami(i, 2)];
             ind = ind + 1;
         end
     end
     
     ind=find(ami(:,2)<=(0.2*ami(1,2)),1,'first'); % finds lag at 20% initial AMI
     if ~isempty(ind)
-        tau(end+1,:)=ami(ind,:);
+        tau15th(1,:)=ami(ind,:);
     end
     
-    varargout{1}=tau;
-    varargout{2}=ami;
+    varargout{1}=tau1st;
+    varargout{2}=tau15th;
+    varargout{3}=ami;
     
 elseif nargin==2 && numel(varargin{1})>1 && numel(varargin{2})>1
     
